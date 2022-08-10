@@ -1,5 +1,5 @@
 import { Header, Profile } from '../../components';
-import { HomeContainer } from './style';
+import { HomeContainer, TitlePublicationsContainer } from './style';
 
 export function Home() {
   return (
@@ -8,6 +8,11 @@ export function Home() {
 
       <HomeContainer>
         <Profile />
+
+        <TitlePublicationsContainer>
+          <strong>Publicações</strong>
+          <p>6 publicações</p>
+        </TitlePublicationsContainer>
       </HomeContainer>
     </>
   );

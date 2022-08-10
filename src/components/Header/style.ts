@@ -13,4 +13,25 @@ export const HeaderContainer = styled.header`
   img {
     max-width: 33.3%;
   }
+
+  @media ${(props) => props.theme.laptop} {
+    height: 200px;
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    height: 120px;
+  }
+`;
+
+export const Logo = styled.img`
+  position: relative;
+  top: -3rem;
+
+  @media ${(props) => props.theme.laptop} {
+    top: -1rem;
+  }
+
+  @media ${(props) => props.theme.laptop} {
+    top: -0.5rem;
+  }
 `;

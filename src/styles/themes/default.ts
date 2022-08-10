@@ -13,4 +13,7 @@ export const defaultTheme = {
   'blue-800': '#0B1B2B',
   'blue-900': '#071422',
   'blue-950': '#040F1A',
+
+  laptop: `(max-width: 700px)`,
+  mobile: `(max-width: 470px)`,
 } as const;
