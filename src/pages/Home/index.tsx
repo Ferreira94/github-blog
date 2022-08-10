@@ -1,4 +1,4 @@
-import { Header, Profile } from '../../components';
+import { Header, Profile, SearchInput } from '../../components';
 import { HomeContainer, TitlePublicationsContainer } from './style';
 
 export function Home() {
@@ -13,6 +13,8 @@ export function Home() {
           <strong>Publicações</strong>
           <p>6 publicações</p>
         </TitlePublicationsContainer>
+
+        <SearchInput />
       </HomeContainer>
     </>
   );

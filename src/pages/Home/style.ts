@@ -9,6 +9,7 @@ export const HomeContainer = styled.main`
 export const TitlePublicationsContainer = styled.div`
   width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   margin-top: -1rem;
 
@@ -21,5 +22,17 @@ export const TitlePublicationsContainer = styled.div`
   p {
     font-size: 0.875rem;
     color: ${(props) => props.theme['blue-100']};
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    margin-top: 0;
+
+    strong {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
   }
 `;
