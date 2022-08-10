@@ -4,6 +4,10 @@ export const HomeContainer = styled.main`
   max-width: 928px;
   padding: 0 2rem;
   margin: 0 auto;
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 0 1rem;
+  }
 `;
 
 export const TitlePublicationsContainer = styled.div`

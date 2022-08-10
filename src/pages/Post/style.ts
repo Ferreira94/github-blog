@@ -5,6 +5,10 @@ export const PostContainer = styled.main`
   max-width: 928px;
   padding: 0 2rem;
   margin: 0 auto;
+
+  @media ${(props) => props.theme.mobile} {
+    padding: 0 1rem;
+  }
 `;
 
 export const InfoPostContainer = styled.section`
@@ -98,5 +102,28 @@ export const InfoFooter = styled.div`
     flex-direction: column;
     gap: 0.25rem;
     font-size: 0.75rem;
+  }
+`;
+
+export const ContentContainer = styled.section`
+  margin-top: -3rem;
+  padding: 0 2rem;
+  line-height: 1.5rem;
+  color: ${(props) => props.theme['gray-300']};
+
+  span {
+    font-weight: 700;
+  }
+
+  strong {
+    color: ${(props) => props.theme['blue-500']};
+    margin-top: 2rem;
+    display: block;
+  }
+
+  @media ${(props) => props.theme.mobile} {
+    margin-top: 0;
+    padding: 0 1rem;
+    font-size: 0.875rem;
   }
 `;
