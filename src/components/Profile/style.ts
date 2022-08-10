@@ -65,12 +65,18 @@ export const InfoHeader = styled.div`
   gap: 0.5rem;
   flex-wrap: wrap;
 
-  div {
+  a {
     display: flex;
     gap: 0.5rem;
     align-items: flex-start;
     cursor: pointer;
     color: ${(props) => props.theme['blue-500']};
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
   }
 
   @media ${(props) => props.theme.mobile} {

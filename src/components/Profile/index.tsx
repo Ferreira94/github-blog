@@ -9,10 +9,10 @@ export function Profile() {
       <InfoContainer>
         <InfoHeader>
           <h2>Luciano Ferreira</h2>
-          <div>
+          <a href="https://github.com/Ferreira94" target="_blank">
             <strong>GITHUB</strong>
             <ArrowSquareOut />
-          </div>
+          </a>
         </InfoHeader>
         <p>
           Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam

@@ -1,10 +1,18 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const PublicationCardContainer = styled.div`
+export const PublicationCardContainer = styled(NavLink)`
   width: 416px;
   border-radius: 10px;
   padding: 2rem;
   background-color: ${(props) => props.theme['blue-700']};
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
 
   div {
     display: flex;
@@ -13,6 +21,7 @@ export const PublicationCardContainer = styled.div`
     h4 {
       max-width: 280px;
       font-size: 1.25rem;
+      color: ${(props) => props.theme['gray-100']};
     }
 
     span {
