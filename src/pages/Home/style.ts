@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HomeContainer = styled.main`
-  max-width: 870px;
+  max-width: 928px;
   padding: 0 2rem;
   margin: 0 auto;
 `;
@@ -35,4 +35,12 @@ export const TitlePublicationsContainer = styled.div`
       font-size: 0.75rem;
     }
   }
+`;
+
+export const PublicationsContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin: 2.5rem 0;
 `;

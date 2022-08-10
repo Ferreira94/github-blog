@@ -1,5 +1,5 @@
-import { Header, Profile, SearchInput } from '../../components';
-import { HomeContainer, TitlePublicationsContainer } from './style';
+import { Header, Profile, PublicationCard, SearchInput } from '../../components';
+import { HomeContainer, TitlePublicationsContainer, PublicationsContainer } from './style';
 
 export function Home() {
   return (
@@ -15,6 +15,15 @@ export function Home() {
         </TitlePublicationsContainer>
 
         <SearchInput />
+
+        <PublicationsContainer>
+          <PublicationCard />
+          <PublicationCard />
+          <PublicationCard />
+          <PublicationCard />
+          <PublicationCard />
+          <PublicationCard />
+        </PublicationsContainer>
       </HomeContainer>
     </>
   );
