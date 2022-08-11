@@ -1,17 +1,22 @@
+import ReactMarkdown from 'react-markdown';
+
 import { PublicationCardContainer } from './style';
 
-export function PublicationCard() {
+interface IPrublicationCard {
+  title: string;
+  text: string;
+  created_at: Date;
+}
+
+export function PublicationCard({ title, text, created_at }: IPrublicationCard) {
   return (
     <PublicationCardContainer to="/post">
       <div>
-        <h4>JavaScript data types and data structures</h4>
+        <h4>{title}</h4>
         <span>Há 1 dia</span>
       </div>
 
-      <p>
-        Programming languages all have built-in data structures, but these often differ from one
-        language to another. This article attempts to list the built-in data structures available in
-      </p>
+      <ReactMarkdown>{text}</ReactMarkdown>
     </PublicationCardContainer>
   );
 }

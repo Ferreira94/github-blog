@@ -1,30 +1,10 @@
-import { ArrowSquareOut, Buildings, GithubLogo, Rocket, RocketLaunch, Users } from 'phosphor-react';
-import { useEffect, useState } from 'react';
-import { api } from '../../lib/axios';
+import { ArrowSquareOut, GithubLogo, RocketLaunch, Users } from 'phosphor-react';
+import { useContext } from 'react';
+import { GithubContext } from '../../contexts/GithubContext';
 import { InfoContainer, InfoHeader, ProfileContainer, InfoFooter } from './style';
 
-interface IUserProps {
-  name: string;
-  avatar_url: string;
-  html_url: string;
-  login: string;
-  followers: number;
-  blog: string;
-  bio: string;
-}
-
 export function Profile() {
-  const [user, setUser] = useState<IUserProps>();
-
-  async function fetchUser() {
-    const response = await api.get('users/ferreira94');
-
-    setUser(response.data);
-  }
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const { user } = useContext(GithubContext);
 
   if (!user) {
     return <h2>Loading</h2>;
