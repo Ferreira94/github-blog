@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
-import { Header } from '../../components';
+import { Header, Spinner } from '../../components';
 import { api } from '../../lib/axios';
 
 import {
@@ -42,56 +42,57 @@ export function Post() {
     fetchIssueById();
   }, []);
 
-  if (!postData) {
-    return <h2>Loading...</h2>;
-  }
-
   return (
     <>
       <Header />
+      {!postData ? (
+        <Spinner />
+      ) : (
+        <>
+          <PostContainer>
+            <InfoPostContainer>
+              <InfoHeader>
+                <Link to="/">
+                  <div>
+                    <CaretLeft />
+                    <span>Voltar</span>
+                  </div>
+                </Link>
+                <a href={`https://github.com/Ferreira94/github-blog/issues/${id}`} target="_blank">
+                  <span>Ver no GitHub</span>
+                  <ArrowSquareOut />
+                </a>
+              </InfoHeader>
+              <h4>{postData.title}</h4>
+              <InfoFooter>
+                <div>
+                  <GithubLogo />
+                  <p>{postData.user.login}</p>
+                </div>
+                <div>
+                  <Calendar />
+                  <p>
+                    {formatDistanceToNow(new Date(postData.created_at), {
+                      addSuffix: true,
+                      locale: ptBR,
+                    })}
+                  </p>
+                </div>
+                <div>
+                  <ChatCircle />
+                  {postData.comments === 0 && <p>Nenhum comentário</p>}
+                  {postData.comments === 1 && <p>{postData.comments} comentário</p>}
+                  {postData.comments > 1 && <p>{postData.comments} comentários</p>}
+                </div>
+              </InfoFooter>
+            </InfoPostContainer>
 
-      <PostContainer>
-        <InfoPostContainer>
-          <InfoHeader>
-            <Link to="/">
-              <div>
-                <CaretLeft />
-                <span>Voltar</span>
-              </div>
-            </Link>
-            <a href={`https://github.com/Ferreira94/github-blog/issues/${id}`} target="_blank">
-              <span>Ver no GitHub</span>
-              <ArrowSquareOut />
-            </a>
-          </InfoHeader>
-          <h4>{postData.title}</h4>
-          <InfoFooter>
-            <div>
-              <GithubLogo />
-              <p>{postData.user.login}</p>
-            </div>
-            <div>
-              <Calendar />
-              <p>
-                {formatDistanceToNow(new Date(postData.created_at), {
-                  addSuffix: true,
-                  locale: ptBR,
-                })}
-              </p>
-            </div>
-            <div>
-              <ChatCircle />
-              {postData.comments === 0 && <p>Nenhum comentário</p>}
-              {postData.comments === 1 && <p>{postData.comments} comentário</p>}
-              {postData.comments > 1 && <p>{postData.comments} comentários</p>}
-            </div>
-          </InfoFooter>
-        </InfoPostContainer>
-
-        <ContentContainer>
-          <ReactMarkdown>{postData.body}</ReactMarkdown>
-        </ContentContainer>
-      </PostContainer>
+            <ContentContainer>
+              <ReactMarkdown>{postData.body}</ReactMarkdown>
+            </ContentContainer>
+          </PostContainer>
+        </>
+      )}
     </>
   );
 }
