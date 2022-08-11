@@ -92,8 +92,13 @@ export const InfoFooter = styled.div`
   margin-top: 1rem;
   flex-wrap: wrap;
 
-  @media ${(props) => props.theme.laptop} {
-    flex-direction: column;
+  a {
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
   }
 
   div {
@@ -105,6 +110,11 @@ export const InfoFooter = styled.div`
       color: ${(props) => props.theme['blue-200']};
     }
   }
+
+  @media ${(props) => props.theme.laptop} {
+    flex-direction: column;
+  }
+
   @media ${(props) => props.theme.mobile} {
     margin-top: 0;
     gap: 0.5rem;
