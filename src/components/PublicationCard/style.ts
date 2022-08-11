@@ -35,6 +35,11 @@ export const PublicationCardContainer = styled(NavLink)`
     color: ${(props) => props.theme['gray-300']};
   }
 
+  h4 {
+    margin-top: 1.25rem;
+    color: ${(props) => props.theme['gray-300']};
+  }
+
   @media ${(props) => props.theme.mobile} {
     padding: 1rem;
 

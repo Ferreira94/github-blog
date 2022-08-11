@@ -1,5 +1,13 @@
 import { ArrowSquareOut, Calendar, CaretLeft, ChatCircle, GithubLogo } from 'phosphor-react';
+import { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import { useParams } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
+
 import { Header } from '../../components';
+import { api } from '../../lib/axios';
+
 import {
   PostContainer,
   InfoPostContainer,
@@ -9,7 +17,35 @@ import {
   ContentContainer,
 } from './style';
 
+interface IPostDataProps {
+  title: string;
+  body: string;
+  comments: number;
+  url: string;
+  user: {
+    login: string;
+  };
+  created_at: Date;
+}
+
 export function Post() {
+  const { id } = useParams();
+  const [postData, setPostData] = useState<IPostDataProps>();
+
+  async function fetchIssueById() {
+    const result = await api.get(`repos/ferreira94/github-blog/issues/${id}`);
+
+    setPostData(result.data);
+  }
+
+  useEffect(() => {
+    fetchIssueById();
+  }, []);
+
+  if (!postData) {
+    return <h2>Loading...</h2>;
+  }
+
   return (
     <>
       <Header />
@@ -23,44 +59,37 @@ export function Post() {
                 <span>Voltar</span>
               </div>
             </Link>
-            <a href="https://github.com/Ferreira94" target="_blank">
+            <a href={`https://github.com/Ferreira94/github-blog/issues/${id}`} target="_blank">
               <span>Ver no GitHub</span>
               <ArrowSquareOut />
             </a>
           </InfoHeader>
-          <h4>JavaScript data types and data structures</h4>
+          <h4>{postData.title}</h4>
           <InfoFooter>
             <div>
               <GithubLogo />
-              <p>ferreira94</p>
+              <p>{postData.user.login}</p>
             </div>
             <div>
               <Calendar />
-              <p>Há 1 dia</p>
+              <p>
+                {formatDistanceToNow(new Date(postData.created_at), {
+                  addSuffix: true,
+                  locale: ptBR,
+                })}
+              </p>
             </div>
             <div>
               <ChatCircle />
-              <p>5 comentários</p>
+              {postData.comments === 0 && <p>Nenhum comentário</p>}
+              {postData.comments === 1 && <p>{postData.comments} comentário</p>}
+              {postData.comments > 1 && <p>{postData.comments} comentários</p>}
             </div>
           </InfoFooter>
         </InfoPostContainer>
 
         <ContentContainer>
-          <p>
-            <span>
-              Programming languages all have built-in data structures, but these often differ from
-              one language to another.
-            </span>
-            This article attempts to list the built-in data structures available in JavaScript and
-            what properties they have. These can be used to build other data structures. Wherever
-            possible, comparisons with other languages are drawn.
-          </p>
-          <strong>Dynamic typing</strong>
-          <p>
-            JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not
-            directly associated with any particular value type, and any variable can be assigned
-            (and re-assigned) values of all types:
-          </p>
+          <ReactMarkdown>{postData.body}</ReactMarkdown>
         </ContentContainer>
       </PostContainer>
     </>

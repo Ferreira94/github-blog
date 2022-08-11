@@ -107,6 +107,7 @@ export const InfoFooter = styled.div`
 
 export const ContentContainer = styled.section`
   margin-top: -3rem;
+  margin-bottom: 2rem;
   padding: 0 2rem;
   line-height: 1.5rem;
   color: ${(props) => props.theme['gray-300']};
@@ -121,9 +122,34 @@ export const ContentContainer = styled.section`
     display: block;
   }
 
+  h4 {
+    color: ${(props) => props.theme['gray-100']};
+    font-size: 1.25rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme['blue-500']};
+
+    &:hover {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+  }
+
+  h3 {
+    margin-top: 2rem;
+    color: ${(props) => props.theme['gray-100']};
+  }
+
   @media ${(props) => props.theme.mobile} {
     margin-top: 0;
+    margin-bottom: 1rem;
     padding: 0 1rem;
     font-size: 0.875rem;
+
+    h3 {
+      margin-top: 1rem;
+    }
   }
 `;
