@@ -82,6 +82,7 @@ export const Link = styled(NavLink)`
 export const InfoFooter = styled.div`
   display: flex;
   gap: 2rem;
+  flex-wrap: wrap;
 
   div {
     display: flex;
@@ -98,9 +99,12 @@ export const InfoFooter = styled.div`
     }
   }
 
-  @media ${(props) => props.theme.mobile} {
+  @media ${(props) => props.theme.laptop} {
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  @media ${(props) => props.theme.mobile} {
     font-size: 0.75rem;
   }
 `;

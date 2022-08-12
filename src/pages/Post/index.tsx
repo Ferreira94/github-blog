@@ -1,4 +1,4 @@
-import { ArrowSquareOut, Calendar, CaretLeft, ChatCircle, GithubLogo } from 'phosphor-react';
+import { ArrowSquareOut, Calendar, CaretLeft, ChatCircle, GithubLogo, Timer } from 'phosphor-react';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
@@ -16,6 +16,7 @@ import {
   Link,
   ContentContainer,
 } from './style';
+import Comments from '../../components/Comments';
 
 interface IPostDataProps {
   title: string;
@@ -36,6 +37,7 @@ export function Post() {
     const result = await api.get(`repos/ferreira94/github-blog/issues/${id}`);
 
     setPostData(result.data);
+    console.log(result.data);
   }
 
   useEffect(() => {
@@ -79,6 +81,10 @@ export function Post() {
                   </p>
                 </div>
                 <div>
+                  <Timer />
+                  <p>Tempo de leitura {Math.floor(postData.body.length / 200)} min</p>
+                </div>
+                <div>
                   <ChatCircle />
                   {postData.comments === 0 && <p>Nenhum comentário</p>}
                   {postData.comments === 1 && <p>{postData.comments} comentário</p>}
@@ -89,6 +95,8 @@ export function Post() {
 
             <ContentContainer>
               <ReactMarkdown>{postData.body}</ReactMarkdown>
+
+              {id && <Comments id={id} />}
             </ContentContainer>
           </PostContainer>
         </>
