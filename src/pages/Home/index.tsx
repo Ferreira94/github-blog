@@ -22,6 +22,7 @@ interface IIssueProps {
 export function Home() {
   const [issues, setIssues] = useState<IIssueProps[]>([]);
   const [seachText, setSeachText] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   async function fetchIssues() {
     const response = await api.get('search/issues', {
@@ -29,6 +30,7 @@ export function Home() {
     });
 
     setIssues(response.data.items);
+    setIsLoading(false);
   }
 
   function handleSearchIssues() {
@@ -46,7 +48,7 @@ export function Home() {
       <Header />
 
       <HomeContainer>
-        {!issues ? (
+        {isLoading ? (
           <Spinner />
         ) : (
           <>
@@ -62,20 +64,27 @@ export function Home() {
                 value={seachText}
                 onChange={(event) => setSeachText(event.target.value)}
               />
-
-              <MagnifyingGlass onClick={handleSearchIssues} />
+              <button onClick={handleSearchIssues}>
+                <MagnifyingGlass />
+              </button>
             </InputContainer>
 
             <PublicationsContainer>
-              {issues.map((item) => (
-                <PublicationCard
-                  key={item.number}
-                  id={item.number}
-                  title={item.title}
-                  text={`${item.body.substring(0, 137)}...`}
-                  created_at={item.created_at}
-                />
-              ))}
+              {issues.length < 1 ? (
+                <h2>Nenhum conteúdo</h2>
+              ) : (
+                <>
+                  {issues.map((item) => (
+                    <PublicationCard
+                      key={item.number}
+                      id={item.number}
+                      title={item.title}
+                      text={`${item.body.substring(0, 137)}...`}
+                      created_at={item.created_at}
+                    />
+                  ))}
+                </>
+              )}
             </PublicationsContainer>
           </>
         )}

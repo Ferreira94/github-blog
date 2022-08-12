@@ -60,10 +60,9 @@ export const InputContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-right: 10px;
 
   input {
-    width: 90%;
+    width: 85%;
     height: 100%;
     padding-left: 1rem;
     outline: 0;
@@ -77,8 +76,25 @@ export const InputContainer = styled.div`
     }
   }
 
-  svg {
-    font-size: 1.25rem;
+  button {
     cursor: pointer;
+    flex: 1;
+    height: 100%;
+    border: 0;
+    background-color: ${(props) => props.theme['blue-300']};
+    color: ${(props) => props.theme['gray-100']};
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    svg {
+      font-size: 1.25rem;
+    }
   }
 `;
