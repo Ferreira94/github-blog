@@ -55,7 +55,7 @@ export function Home() {
             <Profile />
             <TitlePublicationsContainer>
               <strong>Publicações</strong>
-              <p>6 publicações</p>
+              <p>{issues.length} publicações</p>
             </TitlePublicationsContainer>
 
             <InputContainer>
