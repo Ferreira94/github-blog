@@ -37,7 +37,6 @@ export function Post() {
     const result = await api.get(`repos/ferreira94/github-blog/issues/${id}`);
 
     setPostData(result.data);
-    console.log(result.data);
   }
 
   useEffect(() => {
