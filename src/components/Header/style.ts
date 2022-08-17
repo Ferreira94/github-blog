@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -11,7 +12,7 @@ export const HeaderContainer = styled.header`
   background-repeat: no-repeat;
 
   img {
-    max-width: 33.3%;
+    max-width: 100%;
   }
 
   @media ${(props) => props.theme.laptop} {
@@ -21,6 +22,10 @@ export const HeaderContainer = styled.header`
   @media ${(props) => props.theme.mobile} {
     height: 120px;
   }
+`;
+
+export const LinkContainer = styled(NavLink)`
+  max-width: 33.3%;
 `;
 
 export const Logo = styled.img`
