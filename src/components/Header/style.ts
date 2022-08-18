@@ -12,7 +12,7 @@ export const HeaderContainer = styled.header`
   background-repeat: no-repeat;
 
   img {
-    max-width: 100%;
+    width: 33.3%;
   }
 
   @media ${(props) => props.theme.laptop} {
@@ -26,6 +26,10 @@ export const HeaderContainer = styled.header`
 
 export const LinkContainer = styled(NavLink)`
   max-width: 33.3%;
+
+  img {
+    width: 100%;
+  }
 `;
 
 export const Logo = styled.img`
